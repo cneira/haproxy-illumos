@@ -258,7 +258,7 @@ ifeq ($(TARGET),solaris)
   # This is for Solaris 8
   # We also enable getaddrinfo() which works since solaris 8.
   USE_POLL       = implicit
-  TARGET_CFLAGS  = -fomit-frame-pointer -DFD_SETSIZE=65536 -D_REENTRANT
+  TARGET_CFLAGS  = -DFD_SETSIZE=65536 -D_REENTRANT
   TARGET_LDFLAGS = -lnsl -lsocket
   USE_TPROXY     = implicit
   USE_LIBCRYPT    = implicit
@@ -593,7 +593,7 @@ endif
 
 ifneq ($(TRACE),)
 # if tracing is enabled, we want it to be as fast as possible
-TRACE_COPTS := $(filter-out -O0 -O1 -O2 -pg -finstrument-functions,$(COPTS)) -O3 -fomit-frame-pointer
+TRACE_COPTS := $(filter-out -O0 -O1 -O2 -pg -finstrument-functions,$(COPTS)) -O3
 COPTS += -finstrument-functions
 endif
 
